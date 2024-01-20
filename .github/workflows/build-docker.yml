@@ -26,4 +26,3 @@ jobs:
         push: true
         tags: |
           deglanrivas/docker-nginx-ga:latest
-          # deglanrivas/docker-nginx-ga:${{ github.sha }}
