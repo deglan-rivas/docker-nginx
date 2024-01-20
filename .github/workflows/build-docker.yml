@@ -6,7 +6,7 @@ on:
       - main 
 
 jobs:
-  build:
+  build-docker-image:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,3 +26,4 @@ jobs:
         push: true
         tags: |
           deglanrivas/docker-nginx-ga:latest
+          deglanrivas/docker-nginx-ga:${{ github.sha }}
