@@ -33,5 +33,5 @@ jobs:
         context: .
         push: true
         tags: |
-          $account/${{ env.image }}:latest
-          $account_2/${{ env.image }}:${{ github.sha }}
+          ${{ env.account }}/${{ env.image }}:latest
+          ${{ env.account_2 }}/${{ env.image }}:${{ github.sha }}

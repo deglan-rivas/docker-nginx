@@ -28,6 +28,6 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            docker pull $account/$image:latest || true 
+            docker pull ${{ env.account }}/${{ env.image }}:latest || true 
             docker stop ${{ env.container }} || true 
-            docker run --rm -d -p 8080:80 --name ${{ env.container }} $account/$image:latest
+            docker run --rm -d -p 8080:80 --name ${{ env.container }} ${{ env.account }}/${{ env.image }}:latest
