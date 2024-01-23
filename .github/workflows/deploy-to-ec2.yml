@@ -14,14 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.8.0
+      - name: Executing remote command into EC2 by SSH
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: SSH into EC2 and perform actions
-        run: |
-          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ubuntu@18.212.125.86 "\ 
-          docker pull deglanrivas/docker-nginx-ga:latest || true ; \ 
-          docker stop delete-docker-ghactions || true ; \ 
-          docker run --rm -d -p 8080:80 --name delete-docker-ghactions deglanrivas/docker-nginx-ga:latest"
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            docker pull deglanrivas/docker-nginx-ga:latest || true 
+            docker stop delete-docker-ghactions || true 
+            docker run --rm -d -p 8080:80 --name delete-docker-ghactions deglanrivas/docker-nginx-ga:latest
