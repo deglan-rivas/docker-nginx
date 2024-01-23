@@ -27,7 +27,3 @@ jobs:
         tags: |
           deglanrivas/docker-nginx-ga:latest
           deglanrivas/docker-nginx-ga:${{ github.sha }}
-        labels: |
-          com.github.commit-message="${{ github.event.head_commit.message }}"
-          com.github.commit-author="${{ github.event.head_commit.author.name }}"
-          com.github.commit-sha="${{ github.sha }}"
