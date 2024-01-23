@@ -6,6 +6,12 @@ on:
     types:
       - completed
 
+env:
+  account: ${{ vars.ACCOUNT }}
+  container: ${{ vars.CONTAINER }}
+  image: ${{ vars.IMAGE }} 
+  account_2: deglanrivas
+
 jobs:
   deploy-to-ec2:
     runs-on: ubuntu-latest
@@ -22,6 +28,6 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            docker pull deglanrivas/docker-nginx-ga:latest || true 
-            docker stop delete-docker-ghactions || true 
-            docker run --rm -d -p 8080:80 --name delete-docker-ghactions deglanrivas/docker-nginx-ga:latest
+            docker pull $account/$image:latest || true 
+            docker stop ${{ env.container }} || true 
+            docker run --rm -d -p 8080:80 --name ${{ env.container }} $account/$image:latest
